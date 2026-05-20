@@ -1,0 +1,24 @@
+{
+  "name": "eleventy-starter",
+  "version": "0.1.0",
+  "description": "A minimal, fast Eleventy 3 starter with SEO, dark mode, JSON-LD, llms.txt, and a PHP contact form.",
+  "type": "module",
+  "scripts": {
+    "build": "eleventy",
+    "dev": "eleventy --serve",
+    "watch": "eleventy --watch",
+    "lint": "eslint 'src/**/*.md'"
+  },
+  "author": "Jakub T. Jankiewicz",
+  "license": "MIT",
+  "devDependencies": {
+    "@11ty/eleventy": "^3.1.5",
+    "@11ty/eleventy-plugin-syntaxhighlight": "^5.0.2",
+    "@eslint/markdown": "^8.0.1",
+    "eslint": "^10.2.1",
+    "terser": "^5.46.2"
+  },
+  "dependencies": {
+    "html-minifier-next": "^6.1.5"
+  }
+}

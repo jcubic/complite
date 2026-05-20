@@ -1,0 +1,15 @@
+{
+    "name": "eleventy-starter/site",
+    "description": "Eleventy Starter — PHP backend for contact form and HTML minification",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Jakub T. Jankiewicz",
+            "email": "jcubic@jcubic.pl"
+        }
+    ],
+    "require": {
+        "wikimedia/minify": "^2.10",
+        "wikizeit/html-minifier": "^0.1.0"
+    }
+}

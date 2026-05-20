@@ -1,0 +1,17 @@
+{
+    "title": "Eleventy Starter",
+    "description": "A minimal, fast static site starter for writers.",
+    "longDescription": "Eleventy Starter is an opinionated, batteries-included template for fast, minimal blogs. Zero client-side JavaScript by default, full dark mode, and a sane content model so you can focus on the writing.",
+    "url": "https://example.com",
+    "baseUrl": "https://example.com",
+    "language": "en",
+    "author": "admin",
+    "modified": "2026-05-20",
+    "email": "hello@example.com",
+    "apiUrl": "/api",
+    "socialImage": "/img/social-card.png",
+    "foundingDate": "2026-01-01",
+    "sameAs": [
+        "https://github.com/yourusername/eleventy-starter"
+    ]
+}

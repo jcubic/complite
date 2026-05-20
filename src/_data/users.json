@@ -1,0 +1,17 @@
+{
+    "admin": {
+        "name": "admin",
+        "fullname": "Your Name",
+        "bio": "A short author bio. Edit src/_data/users.json to customize.",
+        "role": "Writer",
+        "location": "Earth",
+        "photo": "/img/avatars/admin.jpg",
+        "social": {
+            "github": "https://github.com/yourusername",
+            "mastodon": "",
+            "twitter": "",
+            "linkedin": "",
+            "email": "hello@example.com"
+        }
+    }
+}

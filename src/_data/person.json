@@ -1,0 +1,18 @@
+{
+    "@type": "Person",
+    "url": "https://example.com/author/admin/",
+    "@id": "https://example.com/#author",
+    "name": "Your Name",
+    "alternateName": "admin",
+    "image": {
+        "@type": "ImageObject",
+        "@id": "https://example.com/#author-image",
+        "url": "https://example.com/img/avatars/admin.jpg",
+        "caption": "Your Name"
+    },
+    "jobTitle": "Writer",
+    "description": "Author of the Eleventy Starter blog. Edit src/_data/person.json to customize.",
+    "sameAs": [
+        "https://github.com/yourusername"
+    ]
+}
