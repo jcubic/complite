@@ -1,4 +1,12 @@
-# complite
+<h1 align="center">
+  <a href="https://complite.jcubic.pl/" target="_blank" rel="noopener">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="https://github.com/jcubic/complite/blob/master/.github/logo-dark.svg?raw=true" />
+      <source media="(prefers-color-scheme: light)" srcset="https://github.com/jcubic/complite/blob/master/.github/logo-light.svg?raw=true" />
+      <img alt="Complite Elventy starter logo" src="https://github.com/jcubic/complite/blob/master/.github/logo-light.svg?raw=true" height="400" />
+    </picture>
+  </a>
+</h1>
 
 **A complete Eleventy blogging solution.**
 
