@@ -1,0 +1,35 @@
+{% assign authorData = users[authorKey] %}
+{% if authorData %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "{{ site.url }}/author/{{ authorKey }}/#person",
+      "name": "{{ authorData.fullname }}",
+      "url": "{{ site.url }}/author/{{ authorKey }}/",
+      "jobTitle": "{{ authorData.role }}",
+      "description": "{{ authorData.bio | xml_escape }}",
+      "image": "{{ site.url }}{{ authorData.photo }}",
+      "sameAs": [
+        {% assign links = "" | split: "" %}
+        {% if authorData.social.github and authorData.social.github != "" %}{% assign links = links | push: authorData.social.github %}{% endif %}
+        {% if authorData.social.mastodon and authorData.social.mastodon != "" %}{% assign links = links | push: authorData.social.mastodon %}{% endif %}
+        {% if authorData.social.twitter and authorData.social.twitter != "" %}{% assign links = links | push: authorData.social.twitter %}{% endif %}
+        {% if authorData.social.linkedin and authorData.social.linkedin != "" %}{% assign links = links | push: authorData.social.linkedin %}{% endif %}
+        {% for link in links %}"{{ link }}"{% unless forloop.last %},{% endunless %}{% endfor %}
+      ]
+    },
+    {
+      "@type": "ProfilePage",
+      "@id": "{{ site.url }}/author/{{ authorKey }}/#profilepage",
+      "url": "{{ site.url }}/author/{{ authorKey }}/",
+      "name": "{{ authorData.fullname }} — {{ site.title }}",
+      "mainEntity": { "@id": "{{ site.url }}/author/{{ authorKey }}/#person" },
+      "isPartOf": { "@id": "{{ site.url }}/#website" }
+    }
+  ]
+}
+</script>
+{% endif %}

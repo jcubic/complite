@@ -1,0 +1,19 @@
+<footer class="site-footer">
+  {% unless hideSubscribe %}
+    {% include "partials/subscribe.liquid" %}
+  {% endunless %}
+  <div class="container footer-bottom">
+    <div>&copy; {{ "now" | date: "%Y" }} {{ site.title }}. Source on <a href="{{ site.sameAs[0] }}">GitHub</a>.</div>
+    <nav class="footer-nav" aria-label="Footer">
+      <a href="/about/">About</a>
+      <a href="/tags/">Tags</a>
+      <a href="/contact/">Contact</a>
+    </nav>
+    <div class="footer-meta">
+      <a class="rss-link" href="/feed.xml" aria-label="RSS feed">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M5 3a16 16 0 0 1 16 16h-3A13 13 0 0 0 5 6V3zm0 6a10 10 0 0 1 10 10h-3a7 7 0 0 0-7-7V9zm1 7.5a2 2 0 1 1 0 4 2 2 0 0 1 0-4z"/></svg>
+        RSS
+      </a>
+    </div>
+  </div>
+</footer>

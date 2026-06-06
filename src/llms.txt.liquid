@@ -1,0 +1,29 @@
+---
+permalink: /llms.txt
+eleventyExcludeFromCollections: true
+---
+# {{ site.title }}
+
+> {{ site.description }}
+
+{{ site.longDescription }}
+
+## Blog Posts
+
+{% for post in collections.post %}{% assign slug = post.url | replace: "/blog/posts/", "" | replace: "/", "" %}- [{{ post.data.title }}]({{ site.url }}/blog/{{ slug }}.md)
+{% endfor %}
+
+## Pages
+
+- [About]({{ site.url }}/about.md)
+- [Contact]({{ site.url }}/contact.md)
+- [Privacy Policy]({{ site.url }}/privacy.md)
+
+## Authors
+
+{% for author in collections.author %}- [{{ author.data.title }}]({{ site.url }}/author/{{ author.data.author }}.md)
+{% endfor %}
+
+## Full Text
+
+For a complete text version of the entire site, see: [{{ site.url }}/llms-full.txt]({{ site.url }}/llms-full.txt)

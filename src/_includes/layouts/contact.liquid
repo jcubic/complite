@@ -1,0 +1,57 @@
+---
+layout: layouts/base.liquid
+---
+<div class="container">
+  <div style="max-width:560px; margin:0 auto; text-align:center;">
+    <span class="eyebrow">Contact</span>
+    <h1 style="margin-top:12px;">Say hello</h1>
+    <p class="lede" style="margin-top:16px;">Questions, bug reports, kind words, or speaking enquiries — drop a note. Most messages get a reply within a week.</p>
+  </div>
+
+  <div class="contact-card" style="margin-top:56px;">
+    <!-- form-message-placeholder -->
+    <div class="form-message" data-form-message role="status" aria-live="polite"></div>
+
+    <form action="{{ site.apiUrl }}/contact/" method="POST" novalidate>
+      <input type="hidden" name="redirect_url" value="{{ site.url }}/contact/" />
+      <div class="row-2">
+        <div class="field">
+          <label for="c-name">Name</label>
+          <input class="input" id="c-name" name="name" type="text" placeholder="Your name" required />
+        </div>
+        <div class="field">
+          <label for="c-email">Email</label>
+          <input class="input" id="c-email" name="email" type="email" placeholder="you@example.com" required />
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="c-subject">Subject</label>
+        <input class="input" id="c-subject" name="subject" type="text" placeholder="What's this about?" required />
+      </div>
+
+      <div class="field">
+        <label for="c-message">Message</label>
+        <textarea class="textarea" id="c-message" name="message" placeholder="Write a few sentences…" required></textarea>
+      </div>
+
+      <div class="hp" aria-hidden="true">
+        <label for="c-confirm">Confirm email</label>
+        <input id="c-confirm" type="text" name="confirm_email" tabindex="-1" autocomplete="off" />
+      </div>
+
+      <p class="privacy-note" style="text-align:left; margin-top:0;">
+        By sending this message, you accept our <a href="/privacy/">privacy policy</a>.
+        Your email is used only to reply to you.
+      </p>
+
+      <div>
+        <button class="btn btn-primary" type="submit" style="width:100%;">Send message</button>
+      </div>
+    </form>
+  </div>
+
+  <p class="muted" style="text-align:center; margin-top:32px; font-size:var(--t-sm);">
+    Prefer email? <a href="mailto:{{ site.email }}">{{ site.email }}</a>
+  </p>
+</div>

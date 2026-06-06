@@ -1,0 +1,17 @@
+---
+permalink: /blog.md
+eleventyExcludeFromCollections: true
+---
+# Blog — {{ site.title }}
+
+{% for post in collections.post %}## {{ post.data.title }}
+
+Date: {{ post.date | dateFormat }}
+Author: {{ users[post.data.author].fullname | default: post.data.author }}
+URL: {{ site.url }}{{ post.url }}
+
+{{ post.content | excerpt: 200 }}
+
+---
+
+{% endfor %}

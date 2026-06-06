@@ -1,0 +1,42 @@
+{% assign siteAuthor = users[site.author] %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {{ person | jsonify }},
+    {
+      "@type": "WebPage",
+      "@id": "{{ site.url }}/#webpage",
+      "url": "{{ site.url }}/",
+      "name": "{{ site.title }} — {{ site.description }}",
+      "description": "{{ site.description }}",
+      "isPartOf": { "@id": "{{ site.url }}/#website" },
+      "about": { "@id": "{{ site.url }}/#author" },
+      "datePublished": "{{ site.foundingDate }}",
+      "dateModified": "{{ modified | default: site.modified | dateFormat: 'iso' }}",
+      "inLanguage": "{{ site.language }}"
+    },
+    {
+      "@type": "WebSite",
+      "@id": "{{ site.url }}/#website",
+      "url": "{{ site.url }}/",
+      "name": "{{ site.title }}",
+      "description": "{{ site.description }}",
+      "publisher": { "@id": "{{ site.url }}/#author" },
+      "inLanguage": "{{ site.language }}"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "{{ site.url }}/#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "{{ site.url }}/"
+        }
+      ]
+    }
+  ]
+}
+</script>

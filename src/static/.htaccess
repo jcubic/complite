@@ -1,0 +1,46 @@
+AddCharset UTF-8 .txt .md
+AddType text/markdown .md
+
+# Custom 404
+ErrorDocument 404 /404.html
+
+# HTTP Link headers: sitemap + llms.txt
+<IfModule mod_headers.c>
+  Header always set Link "</sitemap.xml>; rel=\"sitemap\"; type=\"application/xml\""
+  Header always append Link "</llms.txt>; rel=\"alternate\"; type=\"text/plain\""
+</IfModule>
+
+# Content negotiation: text/markdown → .md files
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # Blog posts: /blog/slug/ → /blog/slug.md when Accept: text/markdown
+  RewriteCond %{HTTP_ACCEPT} text/markdown
+  RewriteRule ^blog/([^/]+)/$ /blog/$1.md [L,R=303]
+
+  # About: /about/ → /about.md
+  RewriteCond %{HTTP_ACCEPT} text/markdown
+  RewriteRule ^about/$ /about.md [L,R=303]
+
+  # Contact: /contact/ → /contact.md
+  RewriteCond %{HTTP_ACCEPT} text/markdown
+  RewriteRule ^contact/$ /contact.md [L,R=303]
+
+  # Privacy: /privacy/ → /privacy.md
+  RewriteCond %{HTTP_ACCEPT} text/markdown
+  RewriteRule ^privacy/$ /privacy.md [L,R=303]
+
+  # Author: /author/slug/ → /author/slug.md
+  RewriteCond %{HTTP_ACCEPT} text/markdown
+  RewriteRule ^author/([^/]+)/$ /author/$1.md [L,R=303]
+</IfModule>
+
+# Security: block access to sensitive files
+<IfModule mod_rewrite.c>
+  RewriteRule ^api/config\.json$ - [F,L]
+  RewriteRule ^api/lib/ - [F,L]
+  RewriteRule ^api/logs/ - [F,L]
+  RewriteRule ^api/mail/ - [F,L]
+  RewriteRule ^vendor/ - [F,L]
+  RewriteRule ^api/composer\.(json|lock)$ - [F,L]
+</IfModule>

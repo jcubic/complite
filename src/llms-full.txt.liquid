@@ -1,0 +1,32 @@
+---
+permalink: /llms-full.txt
+eleventyExcludeFromCollections: true
+---
+# {{ site.title }}
+
+> {{ site.description }}
+
+{{ site.longDescription }}
+
+---
+
+{% for post in collections.post %}## {{ post.data.title }}
+
+Date: {{ post.date | dateFormat }}
+Author: {{ users[post.data.author].fullname | default: post.data.author }}
+Tags: {{ post.data.tags | join: ", " }}
+
+{{ post.inputPath | rawMarkdown }}
+
+---
+
+{% endfor %}
+## About
+
+{{ "src/about.md" | rawMarkdown }}
+
+---
+
+## Privacy Policy
+
+{{ "src/privacy.md" | rawMarkdown }}

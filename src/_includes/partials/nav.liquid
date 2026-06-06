@@ -1,0 +1,28 @@
+<header class="site-header">
+  <div class="container site-header__inner">
+    <a class="brand" href="/"><span class="brand__mark">11</span>{{ site.title }}</a>
+    <nav class="nav-primary" data-nav aria-label="Primary">
+      <a href="/"{% if page.url == '/' %} aria-current="page"{% endif %}>Home</a>
+      <a href="/blog/"{% if page.url contains '/blog/' %} aria-current="page"{% endif %}>Blog</a>
+      <a href="/tags/"{% if page.url contains '/tags/' %} aria-current="page"{% endif %}>Tags</a>
+      <a href="/about/"{% if page.url == '/about/' %} aria-current="page"{% endif %}>About</a>
+      <a href="/contact/"{% if page.url contains '/contact/' %} aria-current="page"{% endif %}>Contact</a>
+    </nav>
+    <div class="header-actions">
+      <div class="theme-toggle">
+        <input type="radio" id="mode_dark" name="mode" value="dark">
+        <label for="mode_dark" aria-label="Switch to dark mode">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </label>
+        <input type="radio" id="mode_light" name="mode" value="light">
+        <label for="mode_light" aria-label="Switch to light mode">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+        </label>
+      </div>
+      <button type="button" class="nav-toggle" data-nav-toggle aria-label="Open menu" aria-expanded="false">
+        <svg class="icon-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        <svg class="icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+    </div>
+  </div>
+</header>

@@ -1,0 +1,20 @@
+---
+layout: layouts/base.liquid
+---
+<section class="container">
+  <span class="eyebrow">Page {{ pagination.pageNumber | plus: 1 }} of {{ pagination.pages.size }}</span>
+  <h1 style="margin-top:12px; margin-bottom:16px;">Writing</h1>
+  <p class="lede" style="max-width:60ch;">Long-form notes on design, performance, and the small craft of running a personal site. Updated when something is worth saying.</p>
+</section>
+
+<section class="container" style="margin-top:48px;">
+  <div>
+    {% for post in pagination.items %}
+      {% include "partials/post-card.liquid", post: post %}
+    {% endfor %}
+  </div>
+
+  {% if pagination.pages.size > 1 %}
+    {% include "partials/pagination.liquid" %}
+  {% endif %}
+</section>

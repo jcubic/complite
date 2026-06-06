@@ -1,0 +1,13 @@
+<nav class="pagination" aria-label="Pagination">
+  {% if pagination.href.previous %}
+    <a href="{{ pagination.href.previous }}">&larr; Newer posts</a>
+  {% else %}
+    <span class="disabled">&larr; Newer posts</span>
+  {% endif %}
+  <span class="pages">Page {{ pagination.pageNumber | plus: 1 }} of {{ pagination.pages.size }}</span>
+  {% if pagination.href.next %}
+    <a href="{{ pagination.href.next }}">Older posts &rarr;</a>
+  {% else %}
+    <span class="disabled">Older posts &rarr;</span>
+  {% endif %}
+</nav>

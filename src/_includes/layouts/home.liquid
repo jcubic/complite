@@ -1,0 +1,27 @@
+---
+layout: layouts/base.liquid
+---
+<section class="hero">
+  <div class="container">
+    <span class="eyebrow">v3.0 &middot; Eleventy 3 &middot; ESM ready</span>
+    <h1>A tiny starter for writers who think in Markdown.</h1>
+    <p class="lede">{{ site.longDescription }}</p>
+    <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:32px;">
+      <a class="btn btn-primary" href="/blog/">Read the blog &rarr;</a>
+      <a class="btn btn-ghost" href="/about/">What's inside</a>
+    </div>
+  </div>
+</section>
+
+<section class="container">
+  <div style="display:flex; align-items:baseline; justify-content:space-between; gap:16px; flex-wrap:wrap; margin-bottom:32px;">
+    <h2>Recent posts</h2>
+    <a href="/blog/" style="font-family:var(--font-mono); font-size:var(--t-xs); letter-spacing:.08em; text-transform:uppercase;">All posts &rarr;</a>
+  </div>
+
+  <div class="posts-grid">
+    {% for post in collections.post limit: 4 %}
+      {% include "partials/post-card.liquid", post: post %}
+    {% endfor %}
+  </div>
+</section>

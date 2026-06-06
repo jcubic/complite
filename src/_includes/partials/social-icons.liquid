@@ -1,0 +1,29 @@
+{% if user.social %}
+<div class="social-row" aria-label="Social links">
+  {% if user.social.github and user.social.github != "" %}
+  <a href="{{ user.social.github }}" aria-label="GitHub">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5 3.3 9.3 7.9 10.8.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.4 1 .1-.8.4-1.3.8-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.4-2.3 1.1-3.1-.1-.3-.5-1.4.1-3 0 0 1-.3 3.2 1.2.9-.3 1.9-.4 2.9-.4s2 .1 2.9.4c2.2-1.5 3.2-1.2 3.2-1.2.6 1.6.2 2.7.1 3 .7.8 1.1 1.8 1.1 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6 4.6-1.5 7.9-5.8 7.9-10.8C23.5 5.7 18.3.5 12 .5z"/></svg>
+  </a>
+  {% endif %}
+  {% if user.social.mastodon and user.social.mastodon != "" %}
+  <a href="{{ user.social.mastodon }}" rel="me" aria-label="Mastodon">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.3 12.5c-.3 1.5-2.7 3.2-5.4 3.5-1.4.2-2.8.3-4.3.2-2.4-.1-4.3-.7-4.3-.7v.8c.3 2.3 2.4 2.4 4.3 2.5 2 0 3.7-.5 3.7-.5l.1 1.8s-1.4.7-3.8.9c-1.3.1-3 0-4.9-.5C3.4 19.4 2.9 15.4 2.8 11.4v-3c0-3.8 2.5-4.9 2.5-4.9C6.6 2.8 9 2.6 11.5 2.6h.1c2.5 0 4.9.2 6.2.9 0 0 2.5 1.1 2.5 4.9 0 0 0 2.8-.4 4.1zM18 7.8c0-1-.3-1.8-.8-2.4-.5-.6-1.2-.9-2.1-.9-1 0-1.7.4-2.2 1.1l-.5.8-.5-.8C11.5 5 10.7 4.5 9.8 4.5c-.9 0-1.6.3-2.1.9-.5.6-.8 1.4-.8 2.4v5h2V8c0-1 .4-1.6 1.3-1.6 1 0 1.4.6 1.4 1.8v2.7h2V8.2c0-1.2.5-1.8 1.4-1.8.9 0 1.3.5 1.3 1.6v4.8h2v-5z"/></svg>
+  </a>
+  {% endif %}
+  {% if user.social.twitter and user.social.twitter != "" %}
+  <a href="{{ user.social.twitter }}" aria-label="Twitter / X">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.2 2.25h3.5l-7.7 8.8L23 21.75h-7.1l-5.5-7.2-6.3 7.2H.6l8.2-9.4L.4 2.25h7.3l5 6.6 5.5-6.6zm-1.2 17.5h1.9L7.1 4.2H5.1l11.9 15.55z"/></svg>
+  </a>
+  {% endif %}
+  {% if user.social.linkedin and user.social.linkedin != "" %}
+  <a href="{{ user.social.linkedin }}" aria-label="LinkedIn">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.4 2H3.6A1.6 1.6 0 002 3.6v16.8A1.6 1.6 0 003.6 22h16.8a1.6 1.6 0 001.6-1.6V3.6A1.6 1.6 0 0020.4 2zM8.3 18.3H5.7V9.7h2.6v8.6zM7 8.6a1.5 1.5 0 110-3 1.5 1.5 0 010 3zm11.3 9.7h-2.6v-4.2c0-1 0-2.3-1.4-2.3s-1.6 1.1-1.6 2.2v4.3h-2.6V9.7h2.5v1.2h0a2.7 2.7 0 012.5-1.4c2.7 0 3.2 1.8 3.2 4.1v4.7z"/></svg>
+  </a>
+  {% endif %}
+  {% if user.social.email and user.social.email != "" %}
+  <a href="mailto:{{ user.social.email }}" aria-label="Email">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+  </a>
+  {% endif %}
+</div>
+{% endif %}

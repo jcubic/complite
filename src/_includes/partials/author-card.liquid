@@ -1,0 +1,15 @@
+{% assign author = users[authorKey] %}
+{% if author %}
+<section class="author-card">
+  <div class="author-card__head">
+    {% assign initials = author.fullname | split: " " %}
+    <span class="avatar lg" aria-hidden="true">{% for word in initials %}{{ word | slice: 0 }}{% endfor %}</span>
+    <div>
+      <h4>{{ author.fullname }}</h4>
+      <span class="role">{{ author.role }}{% if author.location %} &middot; {{ author.location }}{% endif %}</span>
+    </div>
+  </div>
+  <p>{{ author.bio }}</p>
+  {% include "partials/social-icons.liquid", user: author %}
+</section>
+{% endif %}

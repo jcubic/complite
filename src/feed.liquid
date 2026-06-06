@@ -1,0 +1,34 @@
+---
+permalink: /feed.xml
+eleventyExcludeFromCollections: true
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="/pretty-feed.xsl" type="text/xsl"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>{{ site.title }}</title>
+    <link>{{ site.url }}/</link>
+    <description>{{ site.description | xml_escape }}</description>
+    <language>{{ site.language }}</language>
+    <lastBuildDate>{{ collections.post[0].date | dateFormat: "rfc822" }}</lastBuildDate>
+    <atom:link href="{{ site.url }}/feed.xml" rel="self" type="application/rss+xml" />
+    {%- for post in collections.post limit: 20 %}
+    {%- assign postAuthor = users[post.data.author] %}
+    <item>
+      <title>{{ post.data.title | xml_escape }}</title>
+      <link>{{ site.url }}{{ post.url | utmRss }}</link>
+      <guid isPermaLink="true">{{ site.url }}{{ post.url }}</guid>
+      <pubDate>{{ post.date | dateFormat: "rfc822" }}</pubDate>
+      <description>{{ post.content | excerpt: 300 | xml_escape }}</description>
+      {%- if postAuthor %}
+      <author>{{ site.email }} ({{ postAuthor.fullname }})</author>
+      {%- endif %}
+      {%- for tag in post.data.tags %}
+      {%- unless tag == "post" or tag == "all" %}
+      <category>{{ tag }}</category>
+      {%- endunless %}
+      {%- endfor %}
+    </item>
+    {%- endfor %}
+  </channel>
+</rss>

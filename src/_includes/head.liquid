@@ -1,0 +1,61 @@
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>{% if title and title != site.title %}{{ title }} — {{ site.title }}{% else %}{{ site.title }} — {{ site.description }}{% endif %}</title>
+<meta name="description" content="{{ description | default: site.description }}" />
+{% if keywords %}<meta name="keywords" content="{{ keywords }}" />{% endif %}
+{% if unlisted %}<meta name="robots" content="noindex, nofollow" />{% endif %}
+
+{% comment %} Favicon {% endcomment %}
+<link rel="icon" type="image/png" sizes="96x96" href="/favicon/favicon-96x96.png" />
+<link rel="icon" type="image/svg+xml" href="/favicon/favicon.svg" />
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
+<link rel="manifest" href="/favicon/site.webmanifest" />
+
+{% comment %} Open Graph {% endcomment %}
+<meta property="og:url" content="{{ site.url }}{{ page.url }}" />
+<meta property="og:type" content="{% if layout contains 'article' %}article{% else %}website{% endif %}" />
+<meta property="og:locale" content="{{ site.language }}" />
+<meta property="og:site_name" content="{{ site.title }}" />
+<meta property="og:title" content="{{ title | default: site.title }}" />
+<meta property="og:description" content="{{ description | default: site.description }}" />
+<meta property="og:image" content="{{ site.url }}{{ featuredImage | default: site.socialImage }}" />
+{% if layout contains 'article' %}
+<meta property="article:published_time" content="{{ date | dateFormat: 'iso' }}" />
+{% if modified %}<meta property="article:modified_time" content="{{ modified | dateFormat: 'iso' }}" />{% endif %}
+{% assign postAuthor = users[author] %}
+{% if postAuthor %}<meta property="article:author" content="{{ postAuthor.fullname }}" />{% endif %}
+{% endif %}
+
+{% comment %} Twitter Card {% endcomment %}
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="{{ title | default: site.title }}" />
+<meta name="twitter:description" content="{{ description | default: site.description }}" />
+<meta name="twitter:image" content="{{ site.url }}{{ featuredImage | default: site.socialImage }}" />
+
+{% comment %} Canonical {% endcomment %}
+<link rel="canonical" href="{{ site.url }}{{ page.url }}" />
+
+{% comment %} Pagination prev/next {% endcomment %}
+{% if pagination %}
+{% if pagination.href.previous %}<link rel="prev" href="{{ site.url }}{{ pagination.href.previous }}" />{% endif %}
+{% if pagination.href.next %}<link rel="next" href="{{ site.url }}{{ pagination.href.next }}" />{% endif %}
+{% endif %}
+
+{% comment %} RSS {% endcomment %}
+<link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ site.url }}/feed.xml" />
+
+{% comment %} Markdown alternate {% endcomment %}
+{% assign mdUrl = page.url | mdAlternate %}
+{% if mdUrl %}<link rel="alternate" type="text/markdown" href="{{ site.url }}{{ mdUrl }}" />{% endif %}
+
+{% comment %} Styles {% endcomment %}
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+{% assign cssHash = "css/style.css" | contentHash %}
+<link rel="stylesheet" href="/css/style.css?v={{ cssHash }}" />
+{% if layout contains 'article' %}
+{% assign prismHash = "css/prism-tomorrow.css" | contentHash %}
+<link rel="stylesheet" href="/css/prism-tomorrow.css?v={{ prismHash }}" />
+{% endif %}

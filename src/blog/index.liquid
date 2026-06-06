@@ -1,0 +1,10 @@
+---
+layout: layouts/blog.liquid
+title: "Blog"
+description: "Long-form notes on design, performance, and the small craft of running a personal site."
+pagination:
+  data: collections.post
+  size: 6
+permalink: "/blog/{% unless pagination.pageNumber == 0 %}page/{{ pagination.pageNumber | plus: 1 }}/{% endunless %}"
+eleventyExcludeFromCollections: true
+---

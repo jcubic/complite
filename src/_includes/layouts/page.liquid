@@ -1,0 +1,14 @@
+---
+layout: layouts/base.liquid
+---
+<div class="container">
+  <div class="bio">
+    {% if eyebrow %}<span class="eyebrow">{{ eyebrow }}</span>{% endif %}
+    {% if title %}<h1 style="margin-top:12px;">{{ title }}</h1>{% endif %}
+    {% if lede %}<p class="lede">{{ lede }}</p>{% endif %}
+
+    <div class="prose">
+      {{ content }}
+    </div>
+  </div>
+</div>

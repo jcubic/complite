@@ -1,0 +1,59 @@
+---
+layout: layouts/base.liquid
+---
+{% assign postAuthor = users[author] %}
+<div class="container">
+  <header class="post-header">
+    {% if tags %}
+    <div class="tag-list" style="margin-bottom:8px;">
+      {% for tag in tags %}
+        {% unless tag == "post" or tag == "all" %}
+          <a class="tag" href="/tags/{{ tag | slugify }}/">{{ tag }}</a>
+        {% endunless %}
+      {% endfor %}
+    </div>
+    {% endif %}
+    <h1>{{ title }}</h1>
+    <div class="post-meta">
+      {% if postAuthor %}
+      <a class="post-author" href="/author/{{ author }}/">
+        {% assign initials = postAuthor.fullname | split: " " %}
+        <span class="avatar" aria-hidden="true">{% for word in initials %}{{ word | slice: 0 }}{% endfor %}</span>
+        <span>by {{ postAuthor.fullname }}</span>
+      </a>
+      <span class="dot">&middot;</span>
+      {% endif %}
+      <time datetime="{{ date | dateFormat: 'iso' }}">{{ date | dateFormat }}</time>
+      <span class="dot">&middot;</span>
+      <span>{{ content | readingTime }} read</span>
+      {% if modified %}
+      <span class="dot">&middot;</span>
+      <span>Updated: <time datetime="{{ modified | dateFormat: 'iso' }}">{{ modified | dateFormat }}</time></span>
+      {% endif %}
+    </div>
+  </header>
+
+  <div class="post-layout">
+    <article class="prose">
+      {{ content }}
+    </article>
+
+    <aside class="post-sidebar" aria-label="About the author and related posts">
+      {% include "partials/author-card.liquid", authorKey: author %}
+
+      <section class="sidebar-section">
+        <h4>Related articles</h4>
+        <ul class="related-list">
+          {% for relPost in collections.post limit: 3 %}
+            {% unless relPost.url == page.url %}
+            <li>
+              <a href="{{ relPost.url }}">{{ relPost.data.title }}</a>
+              <small>{{ relPost.date | dateFormat }} &middot; {{ relPost.content | readingTime }} read</small>
+            </li>
+            {% endunless %}
+          {% endfor %}
+        </ul>
+      </section>
+    </aside>
+  </div>
+</div>

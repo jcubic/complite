@@ -1,0 +1,10 @@
+services:
+  web:
+    build: .
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./_site:/var/www/html
+    security_opt:
+      - "label:disable"
+    user: "${UID:-1000}:${GID:-1000}"

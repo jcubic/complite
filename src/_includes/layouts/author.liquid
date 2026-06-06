@@ -1,0 +1,37 @@
+---
+layout: layouts/base.liquid
+---
+{% assign authorData = users[author] %}
+<div class="container">
+  <div class="bio">
+    <span class="eyebrow">Author</span>
+
+    {% if authorData %}
+    <section class="author-hero">
+      {% assign initials = authorData.fullname | split: " " %}
+      <span class="avatar lg" aria-hidden="true" style="width:104px; height:104px; flex:0 0 104px; font-size:1.75rem;">{% for word in initials %}{{ word | slice: 0 }}{% endfor %}</span>
+      <div>
+        <h1>{{ authorData.fullname }}</h1>
+        <span class="role">{{ authorData.role }}{% if authorData.location %} &middot; {{ authorData.location }}{% endif %}</span>
+        <p>{{ authorData.bio }}</p>
+        {% include "partials/social-icons.liquid", user: authorData %}
+      </div>
+    </section>
+    {% endif %}
+
+    {% assign authorPosts = collections.post | where: "data.author", author %}
+    {% if authorPosts.size > 0 %}
+    <section>
+      <h4 style="font-family:var(--font-mono); font-size:var(--t-xs); letter-spacing:.18em; text-transform:uppercase; color:var(--muted); margin-bottom:16px; font-weight:600;">Published posts &middot; {{ authorPosts.size }}</h4>
+
+      {% for post in authorPosts %}
+      <div class="post-list-row">
+        <a href="{{ post.url }}">{{ post.data.title }}</a>
+        <time datetime="{{ post.date | dateFormat: 'iso' }}">{{ post.date | dateFormat }}</time>
+      </div>
+      {% endfor %}
+    </section>
+    {% endif %}
+
+  </div>
+</div>

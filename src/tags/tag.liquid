@@ -1,0 +1,33 @@
+---
+pagination:
+  data: collections
+  size: 1
+  alias: tag
+  filter:
+    - post
+    - all
+    - tagsList
+    - author
+layout: layouts/base.liquid
+permalink: "/tags/{{ tag | slugify }}/"
+eleventyComputed:
+  title: "{{ tag }}"
+  description: "Posts tagged with {{ tag }}."
+eleventyExcludeFromCollections: true
+---
+<section class="container">
+  <span class="eyebrow"><a href="/tags/" style="color:inherit;">Tags</a> &middot; {{ collections[tag].size }} posts</span>
+  <h1 style="margin-top:12px; margin-bottom:16px;">
+    <span class="tag" style="font-size:inherit; padding:6px 14px; vertical-align:2px;">{{ tag }}</span>
+  </h1>
+</section>
+
+<section class="container" style="margin-top:48px;">
+  <div>
+    {% for post in collections[tag] reversed %}
+      {% include "partials/post-card.liquid", post: post %}
+    {% endfor %}
+  </div>
+
+  <p class="muted" style="margin-top:32px; font-size:var(--t-sm);">Showing {{ collections[tag].size }} posts. <a href="/blog/">Browse all posts &rarr;</a></p>
+</section>

@@ -1,0 +1,19 @@
+---
+layout: layouts/base.liquid
+title: "Tags"
+description: "Every topic the blog has touched."
+permalink: /tags/
+---
+<div class="container">
+  <span class="eyebrow">Index</span>
+  <h1 style="margin-top:12px; margin-bottom:16px;">Tags</h1>
+  <p class="lede" style="max-width:60ch;">Every topic the blog has touched. Click to browse.</p>
+
+  <div class="tags-grid" style="margin-top:48px;">
+    {% for tag in collections.tagsList %}
+      <a class="tag" href="/tags/{{ tag | slugify }}/">{{ tag }} <span class="count">{{ collections[tag].size }}</span></a>
+    {% endfor %}
+  </div>
+
+  <p class="muted" style="margin-top:48px; font-size:var(--t-sm);">{{ collections.tagsList.size }} tags across {{ collections.post.size }} posts.</p>
+</div>

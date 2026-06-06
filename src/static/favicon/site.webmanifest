@@ -1,0 +1,14 @@
+{
+    "name": "Eleventy Starter",
+    "short_name": "11ty",
+    "icons": [
+        {
+            "src": "/favicon/favicon-96x96.png",
+            "sizes": "96x96",
+            "type": "image/png"
+        }
+    ],
+    "theme_color": "#1a1a2e",
+    "background_color": "#fafafa",
+    "display": "standalone"
+}

@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="{{ site.language }}">
+<head>
+  {% include "head.liquid" %}
+  <script>
+  (function() {
+    try {
+      var s = localStorage.getItem('eleventy-starter:theme');
+      if (s === 'dark' || s === 'light') {
+        document.documentElement.setAttribute('data-theme', s);
+      }
+    } catch(_) {}
+  })();
+  </script>
+</head>
+<body class="no-transitions">
+
+  {% include "partials/nav.liquid" %}
+
+  <main>
+    {{ content }}
+  </main>
+
+  {% include "partials/footer.liquid" %}
+
+  {% if layout contains 'home' %}
+    {% include "partials/schema-home.liquid" %}
+  {% elsif layout contains 'article' %}
+    {% include "partials/schema-article.liquid" %}
+  {% elsif layout contains 'author' %}
+    {% include "partials/schema-author.liquid", authorKey: author %}
+  {% endif %}
+
+  <script>
+  (function() {
+    var STORE_KEY = 'eleventy-starter:theme';
+    var root = document.documentElement;
+
+    document.addEventListener('DOMContentLoaded', function() {
+      // Theme toggle — radio change listener
+      document.querySelectorAll('input[name="mode"]').forEach(function(radio) {
+        radio.addEventListener('change', function() {
+          root.setAttribute('data-theme', this.value);
+          try { localStorage.setItem(STORE_KEY, this.value); } catch(_) {}
+        });
+      });
+
+      // Restore checked radio from localStorage
+      try {
+        var saved = localStorage.getItem(STORE_KEY);
+        if (saved === 'dark' || saved === 'light') {
+          var el = document.getElementById('mode_' + saved);
+          if (el) el.checked = true;
+        }
+      } catch(_) {}
+
+      // Mobile nav
+      var navToggle = document.querySelector('[data-nav-toggle]');
+      var navMenu = document.querySelector('[data-nav]');
+      if (navToggle && navMenu) {
+        navToggle.addEventListener('click', function() {
+          var open = document.body.classList.toggle('nav-open');
+          navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+        });
+        navMenu.querySelectorAll('a').forEach(function(a) {
+          a.addEventListener('click', function() {
+            document.body.classList.remove('nav-open');
+            navToggle.setAttribute('aria-expanded', 'false');
+          });
+        });
+        document.addEventListener('keydown', function(e) {
+          if (e.key === 'Escape' && document.body.classList.contains('nav-open')) {
+            document.body.classList.remove('nav-open');
+            navToggle.setAttribute('aria-expanded', 'false');
+            navToggle.focus();
+          }
+        });
+      }
+
+      // Remove first-paint transition guard
+      requestAnimationFrame(function() { document.body.classList.remove('no-transitions'); });
+    });
+  })();
+  </script>
+</body>
+</html>
