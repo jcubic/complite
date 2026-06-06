@@ -53,6 +53,10 @@
   --info:         oklch(52% 0.14 240);
   --info-tint:    oklch(95% 0.04 240);
 
+  /* Logo colors — light */
+  --logo-bg: oklch(15% 0.012 250);
+  --logo-fg: oklch(99% 0.002 250);
+
   /* Code colors — light */
   --code-bg:       oklch(97% 0.004 250);
   --code-fg:       oklch(20% 0.015 250);
@@ -105,6 +109,9 @@
     --info:         oklch(72% 0.14 240);
     --info-tint:    oklch(22% 0.05 240);
 
+    --logo-bg: oklch(95% 0.005 250);
+    --logo-fg: oklch(15% 0.008 250);
+
     --code-bg:      oklch(13% 0.008 250);
     --code-fg:      oklch(88% 0.012 250);
     --code-border:  oklch(24% 0.012 250);
@@ -138,6 +145,9 @@
   --info:         oklch(72% 0.14 240);
   --info-tint:    oklch(22% 0.05 240);
 
+  --logo-bg: oklch(95% 0.005 250);
+  --logo-fg: oklch(15% 0.008 250);
+
   --code-bg:      oklch(13% 0.008 250);
   --code-fg:      oklch(88% 0.012 250);
   --code-border:  oklch(24% 0.012 250);
@@ -168,6 +178,9 @@
   --error-tint:   oklch(95% 0.04 25);
   --info:         oklch(52% 0.14 240);
   --info-tint:    oklch(95% 0.04 240);
+
+  --logo-bg: oklch(15% 0.012 250);
+  --logo-fg: oklch(99% 0.002 250);
 
   --code-bg:       oklch(97% 0.004 250);
   --code-fg:       oklch(20% 0.015 250);
@@ -201,6 +214,9 @@
   --info:         oklch(72% 0.14 240);
   --info-tint:    oklch(22% 0.05 240);
 
+  --logo-bg: oklch(95% 0.005 250);
+  --logo-fg: oklch(15% 0.008 250);
+
   --code-bg:      oklch(13% 0.008 250);
   --code-fg:      oklch(88% 0.012 250);
   --code-border:  oklch(24% 0.012 250);
@@ -231,6 +247,9 @@
   --error-tint:   oklch(95% 0.04 25);
   --info:         oklch(52% 0.14 240);
   --info-tint:    oklch(95% 0.04 240);
+
+  --logo-bg: oklch(15% 0.012 250);
+  --logo-fg: oklch(99% 0.002 250);
 
   --code-bg:       oklch(97% 0.004 250);
   --code-fg:       oklch(20% 0.015 250);
@@ -377,16 +396,12 @@ p  { text-wrap: pretty; }
   color: var(--fg);
 }
 .brand:hover { color: var(--fg); }
-.brand__mark {
-  width: 22px; height: 22px;
+.brand__logo {
+  width: 26px;
+  height: 26px;
+  flex: 0 0 26px;
   border-radius: var(--r-sm);
-  background: var(--fg);
-  color: var(--bg);
-  display: grid; place-items: center;
-  font-family: var(--font-mono);
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: -0.02em;
+  overflow: hidden;
 }
 
 .nav-primary {
