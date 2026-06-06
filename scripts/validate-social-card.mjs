@@ -14,10 +14,9 @@ try {
     }
 
     const parser = new DOMParser({
-        errorHandler: {
-            warning: () => {},
-            error: (msg) => { throw new Error(msg); },
-            fatalError: (msg) => { throw new Error(msg); },
+        onError: (level, msg) => {
+            if (level === 'warning') return;
+            throw new Error(msg);
         },
     });
 
