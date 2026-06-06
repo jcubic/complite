@@ -2,7 +2,7 @@ services:
   web:
     build: .
     ports:
-      - "8080:8080"
+      - "8090:8080"
     volumes:
       - ./_site:/var/www/html
     security_opt:

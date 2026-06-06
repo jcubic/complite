@@ -1084,6 +1084,103 @@ label[for="mode_dark"] { display: grid; }
 .contact-card .row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-4); }
 @media (max-width: 520px) { .contact-card .row-2 { grid-template-columns: 1fr; } }
 
+/* Search page */
+.search-box {
+  max-width: var(--container-narrow);
+  margin: 0 auto var(--s-7);
+}
+.search-form {
+  display: flex;
+  gap: var(--s-2);
+}
+.search-input-wrap {
+  position: relative;
+  flex: 1;
+}
+.search-input-wrap .search-icon {
+  position: absolute;
+  left: var(--s-4);
+  top: 50%;
+  transform: translateY(-50%);
+  width: 18px;
+  height: 18px;
+  color: var(--subtle);
+  pointer-events: none;
+}
+.search-input {
+  padding-left: calc(var(--s-4) + 18px + var(--s-3)) !important;
+}
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.search-results {
+  max-width: var(--container-narrow);
+  margin: 0 auto;
+}
+.search-summary {
+  font-family: var(--font-mono);
+  font-size: var(--t-sm);
+  color: var(--muted);
+  margin-bottom: var(--s-6);
+  letter-spacing: 0.02em;
+}
+.search-result {
+  padding: var(--s-5) 0;
+  border-bottom: 1px solid var(--border);
+}
+.search-result:first-of-type {
+  border-top: 1px solid var(--border);
+}
+.search-result h3 {
+  font-size: var(--t-lg);
+  margin-bottom: var(--s-1);
+}
+.search-result h3 a { color: var(--fg); }
+.search-result h3 a:hover { color: var(--accent); }
+.search-result__url {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: var(--t-xs);
+  color: var(--accent);
+  letter-spacing: 0.02em;
+  margin-bottom: var(--s-2);
+  font-style: normal;
+}
+.search-result__snippet {
+  font-size: var(--t-sm);
+  color: var(--muted);
+  line-height: 1.6;
+}
+.search-result__snippet mark {
+  background: var(--accent-tint);
+  color: var(--fg);
+  padding: 1px 3px;
+  border-radius: 3px;
+}
+
+/* Search toggle in header */
+.search-toggle {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--r);
+  display: grid;
+  place-items: center;
+  color: var(--fg-2);
+  border: 1px solid var(--border);
+  transition: background-color var(--dur) var(--ease), color var(--dur) var(--ease), border-color var(--dur) var(--ease);
+}
+.search-toggle:hover { background: var(--surface-2); color: var(--fg); border-color: var(--border-strong); }
+.search-toggle svg { width: 18px; height: 18px; }
+
 /* 404 */
 .notfound {
   display: grid;

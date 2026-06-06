@@ -5,6 +5,7 @@ import { dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import markdownIt from 'markdown-it';
 import syntaxHighlight from '@11ty/eleventy-plugin-syntaxhighlight';
+import { execSync } from 'child_process';
 import { minify } from 'html-minifier-next';
 import { minify as minifyJS } from 'terser';
 
@@ -183,7 +184,10 @@ export default function(eleventyConfig) {
                     collapseWhitespace: true,
                     conservativeCollapse: true,
                     removeComments: true,
-                    ignoreCustomComments: [/^\s*form-message-placeholder\s*$/],
+                    ignoreCustomComments: [
+                        /^\s*form-message-placeholder\s*$/,
+                        /^\s*search-results-placeholder\s*$/,
+                    ],
                     minifyCSS: true,
                     minifyJS: async (text) => {
                         const result = await minifyJS(text, { compress: false });
@@ -194,6 +198,18 @@ export default function(eleventyConfig) {
             return content;
         });
     }
+
+    eleventyConfig.on('eleventy.after', () => {
+        const searchIndex = process.env.SEARCH_INDEX;
+        const shouldIndex = searchIndex === '1' || (searchIndex !== '0' && isProduction);
+        if (shouldIndex) {
+            try {
+                execSync('node scripts/build-search-index.mjs', { stdio: 'inherit' });
+            } catch {
+                console.error('Search index build failed. Is better-sqlite3 installed?');
+            }
+        }
+    });
 
     return {
         dir: {

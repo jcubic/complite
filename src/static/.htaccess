@@ -43,4 +43,11 @@ ErrorDocument 404 /404.html
   RewriteRule ^api/mail/ - [F,L]
   RewriteRule ^vendor/ - [F,L]
   RewriteRule ^api/composer\.(json|lock)$ - [F,L]
+  RewriteRule \.db$ - [F,L]
+</IfModule>
+
+# Search: rewrite /search/ to PHP handler
+<IfModule mod_rewrite.c>
+  RewriteCond %{REQUEST_FILENAME}/index.php -f
+  RewriteRule ^search/$ /search/index.php [L,QSA]
 </IfModule>
