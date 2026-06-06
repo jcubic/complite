@@ -8,7 +8,7 @@
   </a>
 </h1>
 
-[![Build](https://github.com/jcubic/complite/actions/workflows/build.yaml/badge.svg)](https://github.com/jcubic/complite/actions/workflows/build.yaml)
+[![CI/CD](https://github.com/jcubic/complite/actions/workflows/ci.yaml/badge.svg)](https://github.com/jcubic/complite/actions/workflows/ci.yaml)
 [![Complite GitHub repo](https://img.shields.io/badge/github-repo-orange?logo=github)](https://github.com/jcubic/complite)
 [![LICENSE MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/jcubic/complite/blob/master/LICENSE)
 
