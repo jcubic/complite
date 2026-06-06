@@ -1,6 +1,6 @@
 {
     "title": "complite",
-    "description": "A complete Eleventy blogging solution.",
+    "description": "A complete Eleventy blogging solution. SEO / GEO / AI ready.",
     "longDescription": "complite is a batteries-included Eleventy 3 template for fast, minimal blogs. Zero client-side JavaScript by default, full dark mode, PHP-powered search, contact form with bot protection, and a sane content model so you can focus on the writing.",
     "url": "https://example.com",
     "baseUrl": "https://example.com",

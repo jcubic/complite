@@ -12,12 +12,13 @@
 [![Complite GitHub repo](https://img.shields.io/badge/github-repo-orange?logo=github)](https://github.com/jcubic/complite)
 [![LICENSE MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/jcubic/complite/blob/master/LICENSE)
 
-** A complete Eleventy blogging solution **
+**A complete Eleventy blogging solution. SEO / GEO / AI ready.**
 
 Zero client-side JavaScript by default. Full dark mode. SEO-ready with JSON-LD, Open Graph,
-sitemaps, RSS, and llms.txt. Full-text search powered by SQLite and PHP. An optional PHP
-contact form with honeypot anti-spam. Everything you need to start writing — nothing you
-need to strip out.
+sitemaps, and RSS. GEO-optimized with structured data for local and global discoverability.
+AI-ready with llms.txt, content negotiation, and machine-readable markdown views.
+Full-text search powered by SQLite and PHP. An optional PHP contact form with honeypot
+anti-spam. Everything you need to start writing — nothing you need to strip out.
 
 ## Features
 
