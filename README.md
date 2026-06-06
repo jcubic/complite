@@ -1,15 +1,19 @@
-# Eleventy Starter
+# complite
 
-A minimal, fast, batteries-included blog starter for [Eleventy 3](https://www.11ty.dev/).
+**A complete Eleventy blogging solution.**
+
 Zero client-side JavaScript by default. Full dark mode. SEO-ready with JSON-LD, Open Graph,
-sitemaps, RSS, and llms.txt. An optional PHP contact form with honeypot anti-spam. Everything
-you need to start writing — nothing you need to strip out.
+sitemaps, RSS, and llms.txt. Full-text search powered by SQLite and PHP. An optional PHP
+contact form with honeypot anti-spam. Everything you need to start writing — nothing you
+need to strip out.
 
 ## Features
 
 - **Eleventy 3** with ESM, Liquid templates, and Markdown blog posts
 - **CSS-first dark mode** — three-layer priority system using CSS `:has()` with radio buttons,
   no JavaScript required for theme switching
+- **Full-text search** — SQLite FTS5 index built at compile time, PHP search handler with
+  fuzzy matching cascade and BM25 ranking
 - **JSON-LD structured data** — Person, WebSite, BlogPosting, BreadcrumbList, FAQPage schemas
 - **Open Graph and Twitter Cards** — full meta tags for social sharing
 - **Dynamic social card images** — SVG-based OG images generated per blog post
@@ -36,8 +40,8 @@ you need to start writing — nothing you need to strip out.
 **Requirements:** Node.js 18+ and npm.
 
 ```
-git clone https://github.com/jcubic/eleventy-starter.git
-cd eleventy-starter
+git clone https://github.com/jcubic/complite.git
+cd complite
 npm install
 npm run dev
 ```
@@ -86,6 +90,55 @@ Optional front matter:
   in the article body)
 - `unlisted: true` — adds `noindex, nofollow` and excludes from collections
 - `faq` — array of `{question, answer}` objects, generates FAQPage JSON-LD schema
+
+## Search
+
+complite includes a full-text search system powered by SQLite FTS5 and PHP.
+
+### How it works
+
+1. **At build time**, Eleventy runs `scripts/build-search-index.mjs` after generating the site.
+   The script walks all HTML files in `_site/`, extracts titles and content (stripping
+   navigation, headers, footers), and inserts them into a SQLite database with an FTS5 virtual
+   table using the `unicode61` tokenizer.
+
+2. **At request time**, the PHP search handler (`src/static/search/index.php`) reads the
+   built HTML search page and replaces a `<!-- search-results-placeholder -->` comment with
+   search results. It uses a three-tier fuzzy search cascade:
+   - **Tier 1:** FTS5 MATCH with all terms ANDed using prefix expansion (`"word"*`)
+   - **Tier 2:** FTS5 MATCH with terms ORed using prefix expansion (if AND returned nothing)
+   - **Tier 3:** SQL `LIKE` fallback for partial substring matching
+
+   Results are ranked using FTS5's `bm25()` function, and matching context is extracted via
+   `snippet()` with `<mark>` highlighting.
+
+### Environment control
+
+Search indexing is controlled by the `SEARCH_INDEX` environment variable:
+
+| Scenario | Command | Behavior |
+|----------|---------|----------|
+| Production build (default) | `npm run build` | Index is built automatically |
+| Development (default) | `npm run dev` | No indexing (faster rebuilds) |
+| Force indexing in dev | `SEARCH_INDEX=1 npm run dev` | Index is built on every rebuild |
+| Disable indexing entirely | `SEARCH_INDEX=0 npm run build` | No index even in production |
+
+The search page at `/search/` works without the index — it displays a message asking the user
+to rebuild with indexing enabled. This means development mode works normally without waiting
+for index rebuilds.
+
+### Requirements
+
+The search page requires:
+- **PHP 8.0+** with the SQLite3 extension (included by default in most PHP builds)
+- **Apache** with `mod_rewrite` for the `/search/` → `index.php` rewrite
+
+The `.htaccess` file blocks direct access to the `search.db` file (returns 403 Forbidden).
+
+### Without search
+
+If you don't need search, set `SEARCH_INDEX=0` in your build environment and remove the
+search icon from the nav partial. The rest of the site is unaffected.
 
 ## Dark Mode
 
@@ -213,14 +266,15 @@ up the configuration.
 
 ### Without PHP
 
-If you don't need the contact form or deploy to a platform without PHP (Netlify, Vercel,
-Cloudflare Pages), simply remove the `src/contact/` directory and the `api/` directory. The
-rest of the site works as a purely static site with no server-side dependencies.
+If you don't need the contact form or search, and deploy to a platform without PHP (Netlify,
+Vercel, Cloudflare Pages), simply remove the `src/contact/` and `src/static/search/` directories
+and the `api/` directory. The rest of the site works as a purely static site with no server-side
+dependencies.
 
 ## Local Development with Docker
 
-Docker provides a local Apache + PHP environment for testing the contact form, `.htaccess`
-rules, and content negotiation.
+Docker provides a local Apache + PHP environment for testing the contact form, search,
+`.htaccess` rules, and content negotiation.
 
 **Requirements:** Docker and Docker Compose.
 
@@ -244,8 +298,10 @@ The included `.htaccess` file provides:
 
 - Markdown content negotiation — `Accept: text/markdown` serves `.md` files
 - HTTP `Link` headers pointing to the sitemap and llms.txt
+- Search page rewrite — `/search/` routes to `index.php`
 - Custom 404 page
-- Security rules blocking access to config files, PHP libraries, logs, and vendor directory
+- Security rules blocking access to config files, PHP libraries, logs, vendor directory,
+  and `.db` files
 
 This requires Apache with `mod_rewrite` and `mod_headers`. If you deploy to Nginx, Netlify,
 Vercel, or another platform, you will need equivalent configuration for your server.
@@ -253,7 +309,7 @@ Vercel, or another platform, you will need equivalent configuration for your ser
 ## Project Structure
 
 ```
-eleventy-starter/
+complite/
 ├── .eleventy.js                 # Eleventy configuration (collections, filters, transforms)
 ├── package.json
 ├── composer.json                # PHP dependencies (only needed for contact form)
@@ -264,7 +320,8 @@ eleventy-starter/
 │   ├── lib/common.php           # Shared utilities (config, email, security)
 │   ├── config.example.json      # Copy to config.json with your settings
 │   └── logs/                    # Bot attempt logs (gitignored)
-├── scripts/                     # Validation scripts
+├── scripts/                     # Build and validation scripts
+│   ├── build-search-index.mjs   # SQLite FTS5 indexer (runs after build)
 │   ├── validate-jsonld.mjs
 │   └── validate-social-card.mjs
 ├── src/
@@ -283,12 +340,14 @@ eleventy-starter/
 │   │   ├── css/prism-tomorrow.css # Syntax highlighting (uses CSS variables)
 │   │   ├── favicon/             # Favicon set (SVG, PNG, ICO, webmanifest)
 │   │   ├── img/                 # Images and avatars
-│   │   ├── .htaccess            # Content negotiation + security
+│   │   ├── search/index.php     # PHP search handler (fuzzy FTS5 + LIKE fallback)
+│   │   ├── .htaccess            # Content negotiation + security + search rewrite
 │   │   ├── robots.txt
 │   │   ├── pretty-feed.xsl     # RSS stylesheet
 │   │   └── contact/index.php   # PHP wrapper for form messages
 │   ├── card/social-card.svg     # OG image SVG template
 │   ├── index.liquid             # Homepage
+│   ├── search.liquid            # Search page
 │   ├── about.md                 # About page
 │   ├── privacy.md               # Privacy policy
 │   ├── 404.md                   # Not found page
@@ -306,7 +365,7 @@ eleventy-starter/
 | Command | Description |
 |---------|-------------|
 | `npm run dev` | Start development server with live reload |
-| `npm run build` | Production build to `_site/` |
+| `npm run build` | Production build to `_site/` (includes search index) |
 | `npm run watch` | Build and watch for changes (no server) |
 | `npm run lint` | Lint Markdown files with ESLint |
 

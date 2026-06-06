@@ -1,7 +1,7 @@
 {
-  "name": "eleventy-starter",
+  "name": "complite",
   "version": "0.1.0",
-  "description": "A minimal, fast Eleventy 3 starter with SEO, dark mode, JSON-LD, llms.txt, and a PHP contact form.",
+  "description": "complite — A complete Eleventy blogging solution with SEO, dark mode, search, JSON-LD, llms.txt, and PHP contact form.",
   "type": "module",
   "scripts": {
     "build": "eleventy",

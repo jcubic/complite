@@ -1,9 +1,9 @@
 ---
 layout: layouts/page.liquid
-title: "A starter for people who like Markdown more than dashboards."
-description: "Eleventy Starter is a small, opinionated template for building personal sites and slow blogs."
+title: "A complete Eleventy blogging solution."
+description: "complite is a small, opinionated template for building personal sites and slow blogs."
 eyebrow: "About"
-lede: "Eleventy Starter is a small, opinionated template for building personal sites and slow blogs. It ships fast, ages well, and stays out of your way."
+lede: "complite is a small, opinionated template for building personal sites and slow blogs. It ships fast, ages well, and stays out of your way."
 permalink: /about/
 ---
 
@@ -17,6 +17,7 @@ Sensible defaults for the things every blog needs and most starters skimp on:
 - RSS feed — generated from a single template, no plugins required.
 - A full light/dark mode that reads correctly at 11pm and at 11am.
 - An author model that supports multi-author blogs without inventing a CMS.
+- Full-text search powered by SQLite and PHP — no external services needed.
 - A 404 page worth reading and a sitemap that's actually valid.
 
 ## What it isn't
@@ -29,7 +30,7 @@ Writers who already think in Markdown. Designers who want to ship a portfolio in
 
 ## How to start
 
-Clone the repository, run `npm install` and `npm start`, then open your first post in `src/blog/posts/`. Everything else is documented in the [README](https://github.com/yourusername/eleventy-starter).
+Clone the repository, run `npm install` and `npm start`, then open your first post in `src/blog/posts/`. Everything else is documented in the [README](https://github.com/jcubic/complite).
 
 ---
 

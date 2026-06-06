@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
   <rect width="1200" height="630" fill="#1a1a2e"/>
   <rect x="60" y="60" width="1080" height="510" rx="12" fill="#222240" stroke="#333355" stroke-width="1"/>
-  <text x="120" y="160" font-family="Inter, system-ui, sans-serif" font-size="18" font-weight="600" letter-spacing="0.18em" fill="#8888aa" text-transform="uppercase">ELEVENTY STARTER</text>
+  <text x="120" y="160" font-family="Inter, system-ui, sans-serif" font-size="18" font-weight="600" letter-spacing="0.18em" fill="#8888aa" text-transform="uppercase">COMPLITE</text>
   <text x="120" y="280" font-family="Inter, system-ui, sans-serif" font-size="48" font-weight="700" fill="#f0f0ff" letter-spacing="-0.02em">
     <tspan x="120" dy="0">{{ title }}</tspan>
   </text>

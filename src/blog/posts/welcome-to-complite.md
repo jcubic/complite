@@ -1,27 +1,28 @@
 ---
-title: "Welcome to Eleventy Starter"
-description: "An introduction to what's included in this starter, how it's structured, and how to make it yours."
+title: "Welcome to complite"
+description: "An introduction to what's included in complite, how it's structured, and how to make it yours."
 date: 2026-05-20
 author: admin
 tags:
   - eleventy
   - getting-started
-keywords: "eleventy, starter, static site, blog, getting started"
+keywords: "eleventy, complite, static site, blog, getting started"
 ---
 
-You're looking at the first post of a new site built with Eleventy Starter — a small, opinionated template for people who write in Markdown and ship static HTML.
+You're looking at the first post of a new site built with complite — a complete Eleventy blogging solution for people who write in Markdown and ship static HTML.
 
 This post is a quick tour of what's included and how to get started.
 
 ## What you get
 
-Out of the box, this starter ships with:
+Out of the box, complite ships with:
 
 - **Eleventy 3** with ESM configuration and Liquid templates
 - **Five layouts**: home, blog archive, article, author profile, and a generic page
 - **Dark mode** that works without JavaScript, using a three-layer CSS priority system
 - **RSS feed** with an XSL stylesheet for human-readable browser rendering
 - **JSON-LD** structured data for search engines
+- **Full-text search** powered by SQLite and PHP with fuzzy matching
 - **Syntax highlighting** via Prism, loaded only on pages that need it
 - **Contact form** backed by a PHP handler with honeypot spam protection
 
@@ -59,7 +60,7 @@ Then write your content in Markdown. Eleventy handles the rest — layout, navig
 
 ## Configuration
 
-Edit three files to make the starter yours:
+Edit three files to make complite yours:
 
 1. **`src/_data/site.json`** — site title, URL, description, email
 2. **`src/_data/users.json`** — author profiles (name, bio, social links)

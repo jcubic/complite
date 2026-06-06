@@ -81,7 +81,7 @@ A tiny inline script in `<head>` runs before the page renders:
 ```js
 (function() {
   try {
-    var s = localStorage.getItem('eleventy-starter:theme');
+    var s = localStorage.getItem('complite:theme');
     if (s === 'dark' || s === 'light') {
       document.documentElement.setAttribute('data-theme', s);
     }

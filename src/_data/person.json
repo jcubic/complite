@@ -11,7 +11,7 @@
         "caption": "Your Name"
     },
     "jobTitle": "Writer",
-    "description": "Author of the Eleventy Starter blog. Edit src/_data/person.json to customize.",
+    "description": "Author of the complite blog. Edit src/_data/person.json to customize.",
     "sameAs": [
         "https://github.com/yourusername"
     ]

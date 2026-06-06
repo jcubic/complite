@@ -1,6 +1,6 @@
 {
-    "name": "eleventy-starter/site",
-    "description": "Eleventy Starter — PHP backend for contact form and HTML minification",
+    "name": "complite/site",
+    "description": "complite — PHP backend for contact form, search, and HTML minification",
     "type": "project",
     "authors": [
         {

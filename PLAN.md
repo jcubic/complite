@@ -1,4 +1,4 @@
-# Eleventy Starter — Implementation Plan
+# complite — Implementation Plan
 
 Turn the static HTML/CSS design in `design/` into a fully functional Eleventy 3 starter project
 with all the key features from the WikiZEIT architecture, adapted for a generic English-language
