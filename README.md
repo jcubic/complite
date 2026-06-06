@@ -8,7 +8,11 @@
   </a>
 </h1>
 
-**A complete Eleventy blogging solution.**
+[![Build](https://github.com/jcubic/complite/actions/workflows/build.yaml/badge.svg)](https://github.com/jcubic/complite/actions/workflows/build.yaml)
+[![Complite GitHub repo](https://img.shields.io/badge/github-repo-orange?logo=github)](https://github.com/jcubic/complite)
+[![LICENSE MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/jcubic/complite/blob/master/LICENSE)
+
+** A complete Eleventy blogging solution **
 
 Zero client-side JavaScript by default. Full dark mode. SEO-ready with JSON-LD, Open Graph,
 sitemaps, RSS, and llms.txt. Full-text search powered by SQLite and PHP. An optional PHP
