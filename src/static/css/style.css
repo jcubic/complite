@@ -69,9 +69,9 @@
   --code-attr:     oklch(40% 0.14 200);
 
   /* Type families */
-  --font-display: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Display', system-ui, sans-serif;
-  --font-body:    'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Text', system-ui, sans-serif;
-  --font-mono:    'JetBrains Mono', 'SF Mono', ui-monospace, Menlo, Monaco, monospace;
+  --font-display: 'Inter', 'Inter Fallback', -apple-system, BlinkMacSystemFont, 'SF Pro Display', system-ui, sans-serif;
+  --font-body:    'Inter', 'Inter Fallback', -apple-system, BlinkMacSystemFont, 'SF Pro Text', system-ui, sans-serif;
+  --font-mono:    'JetBrains Mono', 'JetBrains Mono Fallback', 'SF Mono', ui-monospace, Menlo, Monaco, monospace;
 
   /* Geometry */
   --r-sm: 4px;
@@ -260,6 +260,28 @@
   --code-fn:       oklch(45% 0.16 250);
   --code-num:      oklch(48% 0.14 70);
   --code-attr:     oklch(40% 0.14 200);
+}
+
+/* ============================================================
+   Font fallbacks — size-adjusted to reduce CLS during swap
+   ============================================================ */
+
+@font-face {
+  font-family: 'Inter Fallback';
+  src: local('Arial'), local('Helvetica Neue'), local('Helvetica');
+  size-adjust: 107%;
+  ascent-override: 90%;
+  descent-override: 22%;
+  line-gap-override: 0%;
+}
+
+@font-face {
+  font-family: 'JetBrains Mono Fallback';
+  src: local('Courier New'), local('Courier');
+  size-adjust: 95%;
+  ascent-override: 100%;
+  descent-override: 23%;
+  line-gap-override: 0%;
 }
 
 /* ============================================================
