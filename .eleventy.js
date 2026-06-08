@@ -1,13 +1,15 @@
 import path from 'path';
-import { readFileSync } from 'fs';
+import { readFileSync, existsSync, writeFileSync } from 'fs';
 import { createHash } from 'crypto';
 import { dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import markdownIt from 'markdown-it';
 import syntaxHighlight from '@11ty/eleventy-plugin-syntaxhighlight';
+import socialCard from 'eleventy-plugin-svg-social-card';
 import { execSync } from 'child_process';
 import { minify } from 'html-minifier-next';
 import { minify as minifyJS } from 'terser';
+import CleanCSS from 'clean-css';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
@@ -74,6 +76,21 @@ export default function(eleventyConfig) {
     eleventyConfig.addPassthroughCopy({ "vendor": "/vendor" });
 
     eleventyConfig.addPlugin(syntaxHighlight);
+
+    eleventyConfig.addPlugin(socialCard, {
+        template: 'src/card/social-card.svg',
+        outputDir: '_site/img/social-cards',
+        urlPath: '/img/social-cards',
+        data(ctx) {
+            const users = JSON.parse(readFileSync(path.join(__dirname, 'src/_data/users.json'), 'utf-8'));
+            const user = users[ctx.author];
+            return {
+                title: ctx.title,
+                fullname: user?.fullname ?? ctx.author ?? '',
+                date: ctx.date ? formatDate(ctx.date) : '',
+            };
+        },
+    });
 
     eleventyConfig.addCollection("post", function(collectionApi) {
         return collectionApi.getFilteredByGlob("src/blog/posts/*.md").sort((a, b) => {
@@ -200,6 +217,17 @@ export default function(eleventyConfig) {
     }
 
     eleventyConfig.on('eleventy.after', () => {
+        if (isProduction) {
+            const cssFiles = ['_site/css/style.css', '_site/css/prism-tomorrow.css'];
+            for (const rel of cssFiles) {
+                const cssPath = path.join(__dirname, rel);
+                if (existsSync(cssPath)) {
+                    const css = readFileSync(cssPath, 'utf-8');
+                    const result = new CleanCSS({ level: 2 }).minify(css);
+                    writeFileSync(cssPath, result.styles);
+                }
+            }
+        }
         const searchIndex = process.env.SEARCH_INDEX;
         const shouldIndex = searchIndex === '1' || (searchIndex !== '0' && isProduction);
         if (shouldIndex) {

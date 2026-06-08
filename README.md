@@ -37,7 +37,8 @@ anti-spam. Everything you need to start writing — nothing you need to strip ou
   (Apache `.htaccess`)
 - **Syntax highlighting** — Prism via `@11ty/eleventy-plugin-syntaxhighlight` with theme colors
   that follow the dark mode system
-- **HTML minification** in production (html-minifier-next + Terser for inline JS)
+- **HTML and CSS minification** in production (html-minifier-next + Terser for inline JS,
+  clean-css for external stylesheets)
 - **Computed modified dates** from git history with a global site-wide floor
 - **PHP contact form** — honeypot anti-spam, input sanitization, open redirect prevention,
   mock email fallback for local development
@@ -221,9 +222,14 @@ Content negotiation via `.htaccess` also serves the markdown version when a clie
 
 ## Social Cards
 
-Blog posts get auto-generated Open Graph images via `eleventy-plugin-svg-social-card`. The SVG
-template is in `src/card/social-card.svg` — customize it to match your brand. A static fallback
-image (`src/static/img/social-card.png`) is used for non-article pages.
+Blog posts get auto-generated Open Graph images via
+[`eleventy-plugin-svg-social-card`](https://github.com/jcubic/eleventy-plugin-svg-social-card).
+The plugin renders the SVG template in `src/card/social-card.svg` with per-post data (title,
+author, date) in a headless Chromium and screenshots it to a 1200×630 PNG. The `{% card "emit" %}`
+shortcode in `head.liquid` returns the URL for `og:image` and `twitter:image` meta tags.
+
+Customize the card design by editing the SVG template. A static fallback image
+(`src/static/img/social-card.png`) is used for non-article pages.
 
 ## Contact Form (PHP)
 

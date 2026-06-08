@@ -32,4 +32,6 @@ npm run lint         # ESLint on Markdown files
 - Template engine: Liquid (not Nunjucks)
 - Date format filter: `dateFormat` with optional "iso", "short", "rfc822" argument
 - Production HTML minification via `html-minifier-next` transform (only `.html` files)
+- Production CSS minification via `clean-css` in `eleventy.after` event
+- Social card PNGs generated per blog post via `eleventy-plugin-svg-social-card` (SVG template in `src/card/social-card.svg`)
 - Passthrough copy: `src/static/` → root, `api/` → `/api`, `vendor/` → `/vendor`

@@ -17,6 +17,8 @@
     "@eslint/markdown": "^8.0.1",
     "@xmldom/xmldom": "^0.9.10",
     "better-sqlite3": "^11.10.0",
+    "clean-css": "^5.3.3",
+    "eleventy-plugin-svg-social-card": "^0.2.4",
     "eslint": "^10.2.1",
     "terser": "^5.46.2"
   },
