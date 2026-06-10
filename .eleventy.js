@@ -176,8 +176,8 @@ export default function(eleventyConfig) {
     });
 
     eleventyConfig.addFilter("utmRss", function(url) {
-        const sep = url.includes('?') ? '&' : '?';
-        return `${url}${sep}utm_source=rss&utm_medium=feed`;
+        const sep = url.includes('?') ? '&amp;' : '?';
+        return `${url}${sep}utm_source=rss&amp;utm_medium=feed`;
     });
 
     eleventyConfig.addFilter("slugify", function(str) {
