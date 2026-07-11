@@ -5,7 +5,7 @@
     {% assign initials = author.fullname | split: " " %}
     <span class="avatar lg" aria-hidden="true">{% for word in initials %}{{ word | slice: 0 }}{% endfor %}</span>
     <div>
-      <h4>{{ author.fullname }}</h4>
+      <h2>{{ author.fullname }}</h2>
       <span class="role">{{ author.role }}{% if author.location %} &middot; {{ author.location }}{% endif %}</span>
     </div>
   </div>

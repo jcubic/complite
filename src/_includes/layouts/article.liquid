@@ -42,7 +42,7 @@ layout: layouts/base.liquid
       {% include "partials/author-card.liquid", authorKey: author %}
 
       <section class="sidebar-section">
-        <h4>Related articles</h4>
+        <h2>Related articles</h2>
         <ul class="related-list">
           {% for relPost in collections.post limit: 3 %}
             {% unless relPost.url == page.url %}

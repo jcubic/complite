@@ -22,7 +22,7 @@ layout: layouts/base.liquid
     {% assign authorPosts = collections.post | where: "data.author", author %}
     {% if authorPosts.size > 0 %}
     <section>
-      <h4 style="font-family:var(--font-mono); font-size:var(--t-xs); letter-spacing:.18em; text-transform:uppercase; color:var(--muted); margin-bottom:16px; font-weight:600;">Published posts &middot; {{ authorPosts.size }}</h4>
+      <h2 style="font-family:var(--font-mono); font-size:var(--t-xs); letter-spacing:.18em; text-transform:uppercase; color:var(--muted); margin-bottom:16px; font-weight:600;">Published posts &middot; {{ authorPosts.size }}</h2>
 
       {% for post in authorPosts %}
       <div class="post-list-row">
