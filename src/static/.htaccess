@@ -10,6 +10,49 @@ ErrorDocument 404 /404.html
   Header always append Link "</llms.txt>; rel=\"alternate\"; type=\"text/plain\""
 </IfModule>
 
+# Security response headers
+<IfModule mod_headers.c>
+  # Force HTTPS for a year (ignored by browsers over plain HTTP, e.g. local dev)
+  Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+  # Stop MIME sniffing
+  Header always set X-Content-Type-Options "nosniff"
+  # Clickjacking protection: modern (CSP) + legacy fallback
+  Header always set Content-Security-Policy "frame-ancestors 'self'"
+  Header always set X-Frame-Options "SAMEORIGIN"
+  # Limit referrer leakage
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  # Deny powerful features by default
+  Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=(), usb=()"
+</IfModule>
+
+# Caching
+<IfModule mod_headers.c>
+  # Fingerprinted stylesheets/scripts (URL carries ?v=<hash>) — cache permanently
+  <FilesMatch "\.(css|js)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+  # Fonts, icons and images — cache a week, then revalidate
+  <FilesMatch "\.(woff2?|ttf|eot|ico|png|jpe?g|gif|svg|webp|avif)$">
+    Header set Cache-Control "public, max-age=604800"
+  </FilesMatch>
+  # HTML and machine-readable endpoints — always revalidate
+  <FilesMatch "\.(html|xml|json|txt|md)$">
+    Header set Cache-Control "no-cache"
+  </FilesMatch>
+</IfModule>
+
+# Compression
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/plain text/css text/markdown \
+    text/xml application/xml application/rss+xml application/json \
+    application/javascript image/svg+xml
+</IfModule>
+<IfModule mod_brotli.c>
+  AddOutputFilterByType BROTLI_COMPRESS text/html text/plain text/css text/markdown \
+    text/xml application/xml application/rss+xml application/json \
+    application/javascript image/svg+xml
+</IfModule>
+
 # Content negotiation: text/markdown → .md files
 <IfModule mod_rewrite.c>
   RewriteEngine On

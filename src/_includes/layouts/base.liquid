@@ -15,9 +15,11 @@
 </head>
 <body class="no-transitions">
 
+  <a class="skip-link" href="#main">Skip to main content</a>
+
   {% include "partials/nav.liquid" %}
 
-  <main>
+  <main id="main" tabindex="-1">
     {{ content }}
   </main>
 

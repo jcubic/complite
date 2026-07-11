@@ -333,6 +333,38 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 
 ::selection { background: var(--accent); color: var(--surface); }
 
+/* Skip link — first focusable element, off-screen until focused (WCAG 2.4.1) */
+.skip-link {
+  position: fixed;
+  top: var(--s-3);
+  left: var(--s-3);
+  z-index: 1000;
+  padding: 10px 16px;
+  background: var(--accent);
+  color: var(--surface);
+  border-radius: var(--r-sm);
+  font-weight: 600;
+  transform: translateY(calc(-100% - var(--s-3) - 4px));
+  transition: transform var(--dur) var(--ease);
+}
+.skip-link:focus {
+  transform: translateY(0);
+  outline: 2px solid var(--surface);
+  outline-offset: 2px;
+}
+/* Main is focused programmatically via the skip link; no visible outline needed on the region */
+main:focus { outline: none; }
+
+/* Respect the user's reduced-motion preference (WCAG 2.3.3 / vestibular safety) */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
 /* ============================================================
    Layout primitives
    ============================================================ */
