@@ -25,7 +25,7 @@ eleventyExcludeFromCollections: true
 <section class="container" style="margin-top:48px;">
   <div>
     {% for post in collections[tag] reversed %}
-      {% include "partials/post-card.liquid", post: post %}
+      {% include "partials/post-card.liquid", post: post, level: 2 %}
     {% endfor %}
   </div>
 

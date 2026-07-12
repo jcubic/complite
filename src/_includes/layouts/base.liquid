@@ -31,6 +31,8 @@
     {% include "partials/schema-article.liquid" %}
   {% elsif layout contains 'author' %}
     {% include "partials/schema-author.liquid", authorKey: author %}
+  {% elsif layout contains 'blog' %}
+    {% include "partials/schema-blog.liquid" %}
   {% endif %}
 
   <script>

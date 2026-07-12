@@ -295,6 +295,7 @@ html {
   font-size: 17px;
   -webkit-text-size-adjust: 100%;
   scroll-behavior: smooth;
+  scrollbar-gutter: stable;
 }
 
 body {
@@ -364,6 +365,34 @@ main:focus { outline: none; }
     transition-duration: 0.01ms !important;
   }
 }
+
+/* Forced colours (Windows High Contrast): keep affordances that colour alone would flatten */
+@media (forced-colors: active) {
+  .skip-link { border: 1px solid; }
+  a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible {
+    outline: 2px solid CanvasText;
+  }
+  .tag, .btn { border: 1px solid; }
+}
+
+/* Breadcrumb trail (visible counterpart to the BreadcrumbList JSON-LD) */
+.breadcrumb {
+  font-size: var(--t-xs);
+  color: var(--muted);
+  margin-bottom: var(--s-3);
+}
+.breadcrumb ol {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--s-2);
+}
+.breadcrumb li { display: inline-flex; align-items: center; gap: var(--s-2); }
+.breadcrumb li + li::before { content: "/"; color: var(--border-strong); }
+.breadcrumb a { color: var(--muted); text-decoration: underline; text-underline-offset: 2px; }
+.breadcrumb a:hover { color: var(--accent); }
+.breadcrumb [aria-current="page"] { color: var(--fg-2); }
 
 /* ============================================================
    Layout primitives
@@ -803,9 +832,9 @@ label[for="mode_dark"] { display: grid; }
   color: var(--muted);
 }
 .post-card__meta .dot { color: var(--subtle); }
-.post-card h3 { font-size: clamp(1.35rem, 1.15rem + 0.6vw, 1.625rem); }
-.post-card h3 a { color: var(--fg); }
-.post-card h3 a:hover { color: var(--accent); }
+.post-card__title { font-size: clamp(1.35rem, 1.15rem + 0.6vw, 1.625rem); }
+.post-card__title a { color: var(--fg); }
+.post-card__title a:hover { color: var(--accent); }
 .post-card__excerpt {
   color: var(--muted);
   max-width: 64ch;

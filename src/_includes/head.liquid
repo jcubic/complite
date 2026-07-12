@@ -1,5 +1,8 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="color-scheme" content="light dark" />
+<meta name="theme-color" content="#fbfbfc" media="(prefers-color-scheme: light)" />
+<meta name="theme-color" content="#17181c" media="(prefers-color-scheme: dark)" />
 <title>{% if title and title != site.title %}{{ title }} — {{ site.title }}{% else %}{{ site.title }} — {{ site.description }}{% endif %}</title>
 <meta name="description" content="{{ description | default: site.description }}" />
 {% if keywords %}<meta name="keywords" content="{{ keywords }}" />{% endif %}

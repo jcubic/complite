@@ -1,0 +1,5 @@
+# Security contact for complite — https://specification.website/spec/security/security-txt/
+Contact: https://complite.jcubic.pl/contact/
+Expires: 2027-12-31T23:59:59.000Z
+Preferred-Languages: en
+Canonical: https://complite.jcubic.pl/.well-known/security.txt

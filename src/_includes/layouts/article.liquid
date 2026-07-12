@@ -3,6 +3,13 @@ layout: layouts/base.liquid
 ---
 {% assign postAuthor = users[author] %}
 <div class="container">
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <ol>
+      <li><a href="/">Home</a></li>
+      <li><a href="/blog/">Blog</a></li>
+      <li><span aria-current="page">{{ title }}</span></li>
+    </ol>
+  </nav>
   <header class="post-header">
     {% if tags %}
     <div class="tag-list" style="margin-bottom:8px;">

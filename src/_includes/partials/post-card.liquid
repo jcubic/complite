@@ -7,7 +7,8 @@
       <span class="dot">&middot;</span><span><a href="/author/{{ post.data.author }}/">{{ author.fullname }}</a></span>
     {% endif %}
   </div>
-  <h3><a href="{{ post.url }}">{{ post.data.title }}</a></h3>
+  {% assign hLevel = level | default: 3 %}
+  <h{{ hLevel }} class="post-card__title"><a href="{{ post.url }}">{{ post.data.title }}</a></h{{ hLevel }}>
   <p class="post-card__excerpt">{{ post.content | excerpt: 200 }}</p>
   {% if post.data.tags %}
     <div class="tag-list">

@@ -2,6 +2,17 @@
 layout: layouts/base.liquid
 ---
 <section class="container">
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <ol>
+      <li><a href="/">Home</a></li>
+      {% if pagination.pageNumber == 0 %}
+        <li><span aria-current="page">Blog</span></li>
+      {% else %}
+        <li><a href="/blog/">Blog</a></li>
+        <li><span aria-current="page">Page {{ pagination.pageNumber | plus: 1 }}</span></li>
+      {% endif %}
+    </ol>
+  </nav>
   <span class="eyebrow">Page {{ pagination.pageNumber | plus: 1 }} of {{ pagination.pages.size }}</span>
   <h1 style="margin-top:12px; margin-bottom:16px;">Writing</h1>
   <p class="lede" style="max-width:60ch;">Long-form notes on design, performance, and the small craft of running a personal site. Updated when something is worth saying.</p>
@@ -10,7 +21,7 @@ layout: layouts/base.liquid
 <section class="container" style="margin-top:48px;">
   <div>
     {% for post in pagination.items %}
-      {% include "partials/post-card.liquid", post: post %}
+      {% include "partials/post-card.liquid", post: post, level: 2 %}
     {% endfor %}
   </div>
 
